@@ -1,9 +1,13 @@
-package com.cyalc.jakesrepos.api
+package com.cyalc.jakesrepos.data.api
 
+import android.arch.persistence.room.Entity
 import com.google.gson.annotations.SerializedName
 import java.util.*
 
-data class RepoResponse(
+@Entity(
+        primaryKeys = ["name"]
+)
+data class Repo(
         val id: Int,
         val name: String,
         val language: String,

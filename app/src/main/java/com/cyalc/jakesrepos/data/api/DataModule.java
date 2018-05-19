@@ -1,7 +1,10 @@
-package com.cyalc.jakesrepos.api;
+package com.cyalc.jakesrepos.data.api;
 
 import android.app.Application;
+import android.arch.persistence.room.Room;
 
+import com.cyalc.jakesrepos.data.dao.RepoDao;
+import com.cyalc.jakesrepos.data.db.GithubDb;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -19,7 +22,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
-public abstract class NetworkModule {
+public abstract class DataModule {
 
     private static final int DISK_CACHE_SIZE = 50 * 1024 * 1024;
     private static final String BASE_URL = "https://api.github.com";
@@ -70,5 +73,20 @@ public abstract class NetworkModule {
     @Singleton
     static GithubApi provideGithubApi(Retrofit retrofit) {
         return retrofit.create(GithubApi.class);
+    }
+
+    @Singleton
+    @Provides
+    static GithubDb provideDb(Application app) {
+        return Room
+                .databaseBuilder(app, GithubDb.class, "github.db")
+                .fallbackToDestructiveMigration()
+                .build();
+    }
+
+    @Singleton
+    @Provides
+    static RepoDao provideRepoDao(GithubDb githubDb) {
+        return githubDb.repoDao();
     }
 }

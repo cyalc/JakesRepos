@@ -1,4 +1,4 @@
-package com.cyalc.jakesrepos.api
+package com.cyalc.jakesrepos.data.api
 
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -9,5 +9,5 @@ interface GithubApi {
     fun getRepos(
             @Query("page") page: Int,
             @Query("per_page") per_page: Int
-    ): Observable<List<RepoResponse>>
+    ): Observable<List<Repo>>
 }

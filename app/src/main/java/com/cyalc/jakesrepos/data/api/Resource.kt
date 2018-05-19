@@ -1,4 +1,4 @@
-package com.cyalc.jakesrepos.api
+package com.cyalc.jakesrepos.data.api
 
 sealed class Resource<out T> {
     class Loading<out T> : Resource<T>()
