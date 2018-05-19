@@ -65,4 +65,10 @@ public abstract class NetworkModule {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }
+
+    @Provides
+    @Singleton
+    static GithubApi provideGithubApi(Retrofit retrofit) {
+        return retrofit.create(GithubApi.class);
+    }
 }
