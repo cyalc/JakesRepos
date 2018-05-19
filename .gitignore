@@ -1,0 +1,20 @@
+# built application files
+*.apk
+
+# Ignore gradle files
+.gradle/
+
+# Generated Files
+build/
+config/
+captures/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Android Studio
+.idea/
+*.iml
+
+# gradle.properties
+gradle.properties
