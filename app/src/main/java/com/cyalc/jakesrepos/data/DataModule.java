@@ -1,8 +1,9 @@
-package com.cyalc.jakesrepos.data.api;
+package com.cyalc.jakesrepos.data;
 
 import android.app.Application;
 import android.arch.persistence.room.Room;
 
+import com.cyalc.jakesrepos.data.api.GithubApi;
 import com.cyalc.jakesrepos.data.dao.RepoDao;
 import com.cyalc.jakesrepos.data.db.GithubDb;
 import com.google.gson.Gson;
@@ -26,7 +27,7 @@ public abstract class DataModule {
 
     private static final int DISK_CACHE_SIZE = 50 * 1024 * 1024;
     private static final String BASE_URL = "https://api.github.com";
-    private static final String DATE_FORMAT = "YYYY-MM-DDTHH:MM:SSZ";
+    private static final String DATE_FORMAT = "YYYY-MM-DD'T'HH:MM:SSZ";
 
     @Provides
     @Singleton

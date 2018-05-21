@@ -1,5 +1,7 @@
 package com.cyalc.jakesrepos.data.api
 
+import com.cyalc.jakesrepos.data.models.Repo
+import io.reactivex.Flowable
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query

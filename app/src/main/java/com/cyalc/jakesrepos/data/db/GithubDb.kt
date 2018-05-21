@@ -4,7 +4,7 @@ import android.arch.persistence.room.Database
 import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
 import com.cyalc.jakesrepos.commons.Converters
-import com.cyalc.jakesrepos.data.api.Repo
+import com.cyalc.jakesrepos.data.models.Repo
 import com.cyalc.jakesrepos.data.dao.RepoDao
 
 @Database(

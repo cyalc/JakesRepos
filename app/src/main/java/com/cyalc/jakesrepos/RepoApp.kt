@@ -7,6 +7,10 @@ import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import javax.inject.Inject
+import timber.log.Timber.DebugTree
+import timber.log.Timber
+
+
 
 class RepoApp : Application(), HasActivityInjector {
 
@@ -15,6 +19,9 @@ class RepoApp : Application(), HasActivityInjector {
 
     override fun onCreate() {
         super.onCreate()
+
+        Timber.plant(DebugTree())
+
         initDagger()
     }
 

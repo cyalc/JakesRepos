@@ -1,7 +1,7 @@
 package com.cyalc.jakesrepos.di
 
 import android.app.Application
-import com.cyalc.jakesrepos.MainActivity
+import com.cyalc.jakesrepos.ui.MainActivity
 import com.cyalc.jakesrepos.RepoApp
 import com.cyalc.jakesrepos.di.scopes.ActivityScope
 import dagger.Binds

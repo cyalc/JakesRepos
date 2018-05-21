@@ -2,8 +2,8 @@ package com.cyalc.jakesrepos.di
 
 import android.app.Activity
 import android.content.Context
-import com.cyalc.jakesrepos.MainActivity
-import com.cyalc.jakesrepos.RepoFragment
+import com.cyalc.jakesrepos.ui.MainActivity
+import com.cyalc.jakesrepos.ui.RepoFragment
 import com.cyalc.jakesrepos.di.scopes.ActivityScope
 import com.cyalc.jakesrepos.di.scopes.FragmentScope
 import dagger.Binds

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/padding_medium">
+
+
+    <android.support.constraint.Guideline
+        android:id="@+id/itemRepoGuidelineStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="@dimen/padding_large" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/itemRepoGuidelineEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="@dimen/padding_large" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/itemRepoGuidelineTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="@dimen/padding_medium" />
+
+    <TextView
+        android:id="@+id/itemRepoName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#0066d4"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/itemRepoGuidelineStart"
+        app:layout_constraintTop_toTopOf="@+id/itemRepoGuidelineTop"
+        tools:text="SdkSearch" />
+
+    <TextView
+        android:id="@+id/itemRepoDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_small"
+        android:textColor="#9b9b9b"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/itemRepoGuidelineStart"
+        app:layout_constraintTop_toBottomOf="@+id/itemRepoName"
+        tools:text="An and fdskjfsdkfjskdfjskdfjksdfjsdkfjsdkfjdksfjksdkfjdsf" />
+
+    <ImageView
+        android:id="@+id/itemRepoImageViewLanguage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/padding_medium"
+        app:layout_constraintStart_toStartOf="@+id/itemRepoGuidelineStart"
+        app:layout_constraintTop_toBottomOf="@+id/itemRepoDescription"
+        app:srcCompat="@drawable/ic_language_black_24dp" />
+
+    <TextView
+        android:id="@+id/itemRepoLanguage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/itemRepoImageViewLanguage"
+        app:layout_constraintStart_toEndOf="@+id/itemRepoImageViewLanguage"
+        app:layout_constraintTop_toTopOf="@+id/itemRepoImageViewLanguage"
+        tools:text="Kotlin" />
+
+    <ImageView
+        android:id="@+id/itemRepoImageViewStar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding_medium"
+        app:layout_constraintBottom_toBottomOf="@+id/itemRepoLanguage"
+        app:layout_constraintStart_toEndOf="@+id/itemRepoLanguage"
+        app:layout_constraintTop_toTopOf="@+id/itemRepoLanguage"
+        app:srcCompat="@drawable/ic_star_black_24dp" />
+
+    <TextView
+        android:id="@+id/itemRepoStarCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/itemRepoImageViewStar"
+        app:layout_constraintStart_toEndOf="@+id/itemRepoImageViewStar"
+        app:layout_constraintTop_toTopOf="@+id/itemRepoImageViewStar"
+        tools:text="5" />
+
+    <ImageView
+        android:id="@+id/itemRepoImageViewFork"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding_medium"
+        app:layout_constraintBottom_toBottomOf="@+id/itemRepoStarCount"
+        app:layout_constraintStart_toEndOf="@+id/itemRepoStarCount"
+        app:layout_constraintTop_toTopOf="@+id/itemRepoStarCount"
+        app:srcCompat="@drawable/ic_timeline_black_24dp" />
+
+    <TextView
+        android:id="@+id/itemRepoForkCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/itemRepoImageViewFork"
+        app:layout_constraintStart_toEndOf="@+id/itemRepoImageViewFork"
+        app:layout_constraintTop_toTopOf="@+id/itemRepoImageViewFork"
+        tools:text="34" />
+
+    <TextView
+        android:id="@+id/itemRepoUpdateTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/padding_medium"
+        android:layout_marginStart="@dimen/padding_medium"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/itemRepoForkCount"
+        app:layout_constraintEnd_toStartOf="@+id/itemRepoGuidelineEnd"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/itemRepoForkCount"
+        app:layout_constraintTop_toTopOf="@+id/itemRepoForkCount"
+        tools:text="32 minutes" />
+</android.support.constraint.ConstraintLayout>
