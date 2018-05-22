@@ -27,7 +27,9 @@ constructor(
 
     val networkStateRelay: BehaviorRelay<NetworkState> = BehaviorRelay.createDefault<NetworkState>(Success())
 
-
+    /**
+     * Replace old data with the new one if available
+     */
     fun checkRefreshData() {
 
         repoDao.getAllRepos()
@@ -44,6 +46,10 @@ constructor(
 
     }
 
+    /**
+     * Get repos from api and save them in db
+     * Also send network state to relay
+     */
     fun loadAndSaveRepos(page: Int) {
         networkStateRelay.accept(NetworkState.Loading())
 
@@ -73,7 +79,9 @@ constructor(
         return githubApi.getRepos(page, 15)
     }
 
-
+    /**
+     * Build pagination
+     */
     fun getRepoPagedList(): Flowable<PagedList<Repo>> {
         return RxPagedListBuilder(
                 getRepoDataSource(),
