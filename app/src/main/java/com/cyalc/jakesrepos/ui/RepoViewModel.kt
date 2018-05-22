@@ -8,5 +8,11 @@ class RepoViewModel
 @Inject
 constructor(private val repoRepository: RepoRepository) : ViewModel() {
 
-   val allRepos = repoRepository.getRepoPagedList()
+    val allRepos = repoRepository.getRepoPagedList()
+
+    val networkState = repoRepository.networkStateRelay
+
+    fun checkReposAreRefresh() {
+        repoRepository.checkRefreshData()
+    }
 }

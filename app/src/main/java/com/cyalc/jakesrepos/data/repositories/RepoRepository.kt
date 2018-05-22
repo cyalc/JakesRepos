@@ -4,8 +4,11 @@ import android.arch.paging.DataSource
 import android.arch.paging.PagedList
 import android.arch.paging.RxPagedListBuilder
 import com.cyalc.jakesrepos.data.api.GithubApi
-import com.cyalc.jakesrepos.data.models.Repo
 import com.cyalc.jakesrepos.data.dao.RepoDao
+import com.cyalc.jakesrepos.data.models.NetworkState
+import com.cyalc.jakesrepos.data.models.NetworkState.Success
+import com.cyalc.jakesrepos.data.models.Repo
+import com.jakewharton.rxrelay2.BehaviorRelay
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Observable
@@ -22,7 +25,28 @@ constructor(
         private val repoDao: RepoDao
 ) {
 
+    val networkStateRelay: BehaviorRelay<NetworkState> = BehaviorRelay.createDefault<NetworkState>(Success())
+
+
+    fun checkRefreshData() {
+
+        repoDao.getAllRepos()
+                .filter { it.isNotEmpty() }
+                .toObservable()
+                .flatMap { _ -> loadReposFromNetwork(1) }
+                .take(1)
+                .subscribeOn(Schedulers.io())
+                .subscribe({
+                    repoDao.deleteAllRepos()
+                }, {
+                    networkStateRelay.accept(NetworkState.Failure("No network connection"))
+                })
+
+    }
+
     fun loadAndSaveRepos(page: Int) {
+        networkStateRelay.accept(NetworkState.Loading())
+
         loadReposFromNetwork(page)
                 .flatMap<Repo> { it -> Observable.fromIterable(it) }
                 .map {
@@ -35,9 +59,9 @@ constructor(
                 }
                 .subscribeOn(Schedulers.io())
                 .subscribe({
-
+                    networkStateRelay.accept(Success())
                 }, {
-
+                    networkStateRelay.accept(NetworkState.Failure("No network connection"))
                 })
     }
 
@@ -57,18 +81,20 @@ constructor(
                         .Builder()
                         .setPageSize(15)
                         .setPrefetchDistance(3)
-                        .setEnablePlaceholders(true)
+                        .setEnablePlaceholders(false)
                         .build())
                 .setBoundaryCallback(
                         object : PagedList.BoundaryCallback<Repo>() {
                             override fun onZeroItemsLoaded() {
                                 super.onZeroItemsLoaded()
                                 loadAndSaveRepos(1)
+                                Timber.i("Paging first")
                             }
 
                             override fun onItemAtEndLoaded(itemAtEnd: Repo) {
                                 super.onItemAtEndLoaded(itemAtEnd)
                                 loadAndSaveRepos(itemAtEnd.page + 1)
+                                Timber.i("Paging ${itemAtEnd.page + 1}")
                             }
                         })
                 .buildFlowable(BackpressureStrategy.LATEST)
